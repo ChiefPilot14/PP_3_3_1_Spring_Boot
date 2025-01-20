@@ -23,7 +23,7 @@ public class UsersController {
     }
 
     @ModelAttribute("users")
-    public List<User> populateUsersList() {
+    public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 

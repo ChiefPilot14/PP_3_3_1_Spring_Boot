@@ -1,5 +1,6 @@
 package web.service;
 
+import web.exception.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,9 +27,19 @@ public class UserServiceImpl implements UserService {
         userDao.save(user);
     }
 
+//    @Override
+//    @Transactional
+//    public void updateUser(User user) {
+//        userDao.save(user);
+//    }
+
     @Override
     @Transactional
     public void updateUser(User user) {
+        if (!userDao.existsById(user.getId())) {
+            throw new EntityNotFoundException("Пользователь с id=" + user.getId() + " не найден");
+        }
+
         userDao.save(user);
     }
 
