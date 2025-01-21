@@ -4,7 +4,7 @@ import web.dao.UserDao;
 import web.model.User;
 
 import java.util.List;
-import java.util.Optional;
+
 
 
 public interface UserService {
@@ -14,9 +14,9 @@ public interface UserService {
 
     public void updateUser(User user);
 
-    void removeUserById(long id);
+    void deleteUser(long id);
 
-    Optional<User> getUserById(long id);
+    public User getUserOrCreateIfNotExists(long id);
 
     List<User> getAllUsers();
 

@@ -8,8 +8,6 @@ import web.dao.UserDao;
 import web.model.User;
 
 import java.util.List;
-import java.util.Optional;
-
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -27,12 +25,6 @@ public class UserServiceImpl implements UserService {
         userDao.save(user);
     }
 
-//    @Override
-//    @Transactional
-//    public void updateUser(User user) {
-//        userDao.save(user);
-//    }
-
     @Override
     @Transactional
     public void updateUser(User user) {
@@ -45,17 +37,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void removeUserById(long id) {
+    public void deleteUser(long id) {
         userDao.deleteById(id);
-    }
-
-    @Override
-    public Optional<User> getUserById(long id) {
-        return userDao.findById(id);
     }
 
     @Override
     public List<User> getAllUsers() {
         return userDao.findAll();
+    }
+
+    @Override
+    public User getUserOrCreateIfNotExists(long id) {
+        return userDao.findById(id)
+                .orElse(new User(id));
     }
 }

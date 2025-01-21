@@ -35,6 +35,10 @@ public class User {
         this.age = age;
     }
 
+    public User(long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }
